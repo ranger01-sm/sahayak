@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahayak — Your Trusted Home Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & ROOT ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-mid: #dbeafe;
+  --accent: #f97316;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --text: #111827;
+  --text-2: #4b5563;
+  --text-3: #9ca3af;
+  --border: #e5e7eb;
+  --bg: #f9fafb;
+  --white: #ffffff;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --radius-lg: 20px;
+  --font: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Sora', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--text); background: var(--white); overflow-x: hidden; }
+
+/* ===== PAGE SYSTEM ===== */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ===== NAV ===== */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
+  color: var(--text); text-decoration: none; cursor: pointer;
+}
+.logo-icon {
+  width: 38px; height: 38px; background: var(--primary);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.1rem; font-weight: 700;
+}
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--text-2); text-decoration: none; font-size: 0.9rem;
+  font-weight: 500; cursor: pointer; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--primary); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 22px; border-radius: 8px; font-size: 0.875rem;
+  font-family: var(--font); font-weight: 600; cursor: pointer;
+  border: none; text-decoration: none; transition: all 0.2s;
+}
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,99,235,0.35); }
+.btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+.btn-outline:hover { background: var(--primary-light); }
+.btn-white { background: white; color: var(--primary); }
+.btn-white:hover { background: var(--primary-light); }
+.btn-accent { background: var(--accent); color: white; }
+.btn-accent:hover { background: #ea6c00; transform: translateY(-1px); }
+.btn-green { background: var(--green); color: white; }
+.btn-green:hover { background: #15803d; }
+.btn-lg { padding: 14px 32px; font-size: 1rem; border-radius: 10px; }
+.btn-full { width: 100%; }
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 40%, #3b82f6 100%);
+  color: white; padding: 5rem 2rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25); border-radius: 999px;
+  padding: 6px 16px; font-size: 0.8rem; font-weight: 600;
+  margin-bottom: 1.5rem; color: #bfdbfe;
+}
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem;
+}
+.hero h1 span { color: #fbbf24; }
+.hero p { font-size: 1.05rem; color: #bfdbfe; line-height: 1.7; margin-bottom: 2rem; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Search box */
+.search-box {
+  background: white; border-radius: var(--radius-lg); padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+}
+.search-box h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 1rem; }
+.search-row { display: flex; gap: 10px; margin-bottom: 10px; }
+.search-input {
+  flex: 1; padding: 12px 16px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-family: var(--font); font-size: 0.9rem;
+  color: var(--text); outline: none; transition: border-color 0.2s;
+}
+.search-input:focus { border-color: var(--primary); }
+select.search-input { background: white; cursor: pointer; }
+
+/* ===== TRUST BAR ===== */
+.trust-bar { background: var(--bg); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem; }
+.trust-bar-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.trust-item { text-align: center; }
+.trust-icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--primary-mid); margin: 0 auto 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+}
+.trust-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+.trust-item p { font-size: 0.82rem; color: var(--text-2); }
+
+/* ===== SECTION ===== */
+.section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-label {
+  display: inline-block; background: var(--primary-light);
+  color: var(--primary); font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px;
+  border-radius: 999px; margin-bottom: 1rem;
+}
+.section-title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 700; margin-bottom: 0.75rem; }
+.section-sub { color: var(--text-2); font-size: 1rem; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+/* ===== SERVICE CARDS ===== */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+.service-card {
+  background: white; border-radius: var(--radius-lg);
+  border: 1px solid var(--border); overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s; cursor: pointer;
+}
+.service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.service-img {
+  width: 100%; height: 180px; object-fit: cover;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  display: flex; align-items: center; justify-content: center; font-size: 3rem;
+}
+.service-body { padding: 1.25rem; }
+.service-name { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+.stars { color: #fbbf24; font-size: 0.85rem; margin-bottom: 10px; }
+.stars span { color: var(--text-3); margin-left: 2px; }
+.service-price { font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 12px; }
+.service-price small { font-size: 0.75rem; font-weight: 400; color: var(--text-3); }
+
+/* ===== HOW IT WORKS ===== */
+.how-bg { background: var(--bg); }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; position: relative; }
+.steps-grid::before {
+  content: ''; position: absolute; top: 32px; left: 15%; right: 15%;
+  height: 2px; background: var(--primary-mid); z-index: 0;
+}
+.step { text-align: center; position: relative; z-index: 1; }
+.step-num {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--primary); color: white;
+  font-size: 1.4rem; font-weight: 800; font-family: var(--font-display);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+  box-shadow: 0 0 0 8px var(--primary-mid);
+}
+.step h4 { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+.step p { font-size: 0.875rem; color: var(--text-2); line-height: 1.6; }
+
+/* ===== MAP SECTION ===== */
+.map-section { background: white; padding: 5rem 2rem; }
+.map-wrapper { max-width: 1100px; margin: 0 auto; }
+.map-container {
+  display: grid; grid-template-columns: 360px 1fr; gap: 1.5rem;
+  border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  min-height: 480px;
+}
+#map { width: 100%; height: 100%; min-height: 480px; border-radius: 0; }
+.map-sidebar { padding: 1.5rem; background: var(--bg); overflow-y: auto; }
+.map-sidebar h3 { font-weight: 700; font-size: 1rem; margin-bottom: 1rem; }
+.location-input { margin-bottom: 1rem; }
+.location-input label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-2); margin-bottom: 6px; }
+.location-input input, .location-input select {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-family: var(--font); font-size: 0.875rem;
+  color: var(--text); outline: none; background: white;
+  transition: border-color 0.2s;
+}
+.location-input input:focus, .location-input select:focus { border-color: var(--primary); }
+.nearby-workers { margin-top: 1.25rem; }
+.nearby-workers h4 { font-size: 0.875rem; font-weight: 700; color: var(--text-2); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.worker-chip {
+  display: flex; align-items: center; gap: 10px;
+  background: white; border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 12px; margin-bottom: 8px;
+  cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.worker-chip:hover { border-color: var(--primary); box-shadow: 0 2px 12px rgba(37,99,235,0.12); }
+.worker-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--primary-mid); display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 700; color: var(--primary); flex-shrink: 0;
+}
+.worker-chip-info { flex: 1; }
+.worker-chip-name { font-size: 0.85rem; font-weight: 700; }
+.worker-chip-sub { font-size: 0.75rem; color: var(--text-3); }
+.worker-chip-dist { font-size: 0.75rem; font-weight: 600; color: var(--green); }
+.notify-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--green-light); color: var(--green);
+  font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+}
+.pulse { animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+/* ===== FORMS PAGE ===== */
+.forms-page { background: var(--bg); min-height: 100vh; padding: 0; }
+
+/* Tab switcher — sticky below the top bar */
+.forms-tab-header {
+  position: sticky; top: 0; z-index: 100;
+  background: white; border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.forms-tabs {
+  max-width: 860px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.tab-btn {
+  padding: 18px 24px; font-weight: 700; font-size: 0.95rem;
+  cursor: pointer; border: none; background: transparent; color: var(--text-3);
+  transition: all 0.2s; font-family: var(--font);
+  border-bottom: 3px solid transparent; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); background: var(--primary-light); }
+.tab-btn:hover:not(.active) { color: var(--text); background: var(--bg); }
+
+/* Form area below tabs */
+.forms-body { padding: 2.5rem 2rem; }
+.form-card {
+  max-width: 860px; margin: 0 auto;
+  background: white; border-radius: var(--radius-lg);
+  border: 1px solid var(--border); padding: 2.5rem;
+  box-shadow: var(--shadow);
+}
+/* Form page header context banner */
+.form-context-banner {
+  max-width: 860px; margin: 0 auto 1.5rem;
+  background: var(--primary-light); border: 1px solid var(--primary-mid);
+  border-radius: var(--radius); padding: 1rem 1.5rem;
+  display: flex; align-items: center; gap: 12px;
+}
+.form-context-banner .banner-icon { font-size: 1.6rem; }
+.form-context-banner h4 { font-weight: 700; font-size: 0.95rem; color: var(--primary); }
+.form-context-banner p { font-size: 0.82rem; color: var(--text-2); margin-top: 2px; }
+.form-card h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+.form-card .subtitle { color: var(--text-2); font-size: 0.9rem; margin-bottom: 2rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { margin-bottom: 1.25rem; }
+.form-group.full { grid-column: 1 / -1; }
+.form-group label {
+  display: block; font-size: 0.8rem; font-weight: 700;
+  color: var(--text-2); margin-bottom: 6px; letter-spacing: 0.03em;
+}
+.form-group label span { color: #ef4444; }
+.form-control {
+  width: 100%; padding: 11px 14px;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 0.9rem; color: var(--text);
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+  background: white;
+}
+.form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+.form-control[type="file"] { padding: 8px 14px; }
+textarea.form-control { resize: vertical; min-height: 100px; }
+.skill-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.skill-chip {
+  padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+  border: 1.5px solid var(--border); cursor: pointer; transition: all 0.2s;
+  background: white; color: var(--text-2);
+}
+.skill-chip.selected { background: var(--primary); color: white; border-color: var(--primary); }
+.form-divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+.form-section-title { font-weight: 700; font-size: 0.85rem; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+.availability-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.avail-chip {
+  padding: 8px 4px; text-align: center; border-radius: 8px;
+  border: 1.5px solid var(--border); cursor: pointer; font-size: 0.78rem;
+  font-weight: 600; color: var(--text-2); transition: all 0.2s;
+}
+.avail-chip.selected { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+.success-banner {
+  display: none; background: var(--green-light); border: 1px solid #bbf7d0;
+  border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+  color: var(--green); font-weight: 600; font-size: 0.9rem;
+  align-items: center; gap: 10px;
+}
+.success-banner.show { display: flex; }
+.map-mini { width: 100%; height: 200px; border-radius: 10px; border: 1px solid var(--border); margin-top: 10px; overflow: hidden; }
+
+/* ===== REVIEWS ===== */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.review-card {
+  background: white; border-radius: var(--radius-lg); padding: 1.5rem;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.reviewer { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+.reviewer-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--primary-mid); display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 800; color: var(--primary);
+}
+.reviewer-name { font-weight: 700; font-size: 0.95rem; }
+.reviewer-sub { font-size: 0.78rem; color: var(--text-3); }
+.review-stars { color: #fbbf24; margin-bottom: 10px; }
+.review-text { font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: white; text-align: center; padding: 5rem 2rem;
+}
+.cta-section h2 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
+.cta-section p { color: #bfdbfe; font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ===== FOOTER ===== */
+footer { background: #111827; color: #9ca3af; padding: 3rem 2rem 1.5rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 12px; }
+.footer-col h5 { color: white; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a { color: #6b7280; font-size: 0.85rem; text-decoration: none; cursor: pointer; transition: color 0.2s; }
+.footer-col a:hover { color: white; }
+.footer-bottom { border-top: 1px solid #1f2937; padding-top: 1.5rem; text-align: center; font-size: 0.8rem; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  display: none; align-items: center; justify-content: center; z-index: 500;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: white; border-radius: var(--radius-lg); padding: 2rem;
+  max-width: 500px; width: 90%; box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.modal-header h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; }
+.modal-close { cursor: pointer; font-size: 1.4rem; color: var(--text-3); background: none; border: none; }
+.notify-list { }
+.notify-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px;
+  border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px;
+  animation: fadeIn 0.4s ease both;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+.notify-item:nth-child(2) { animation-delay: 0.1s; }
+.notify-item:nth-child(3) { animation-delay: 0.2s; }
+.noti-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-mid); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.noti-info { flex: 1; }
+.noti-name { font-weight: 700; font-size: 0.9rem; }
+.noti-sub { font-size: 0.78rem; color: var(--text-3); }
+.noti-status { font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--green-light); color: var(--green); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .trust-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .steps-grid::before { display: none; }
+  .map-container { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .map-sidebar { order: -1; }
+  #map { min-height: 300px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .form-grid { grid-template-columns: 1fr; }
+  .availability-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; }
+  .forms-body { padding: 1.25rem 1rem; }
+  .form-card { padding: 1.5rem; }
+  .tab-btn { padding: 14px 12px; font-size: 0.82rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="logo-icon">स</div>
+    Sahayak
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a onclick="showSection('services')" id="nav-services">Services</a></li>
+    <li><a onclick="showPage('home'); setTimeout(()=>scrollTo('map-area'),200)" id="nav-map">Find Workers</a></li>
+    <li><a onclick="showSection('reviews')" id="nav-reviews">Reviews</a></li>
+    <li><a onclick="showPage('home'); setTimeout(()=>scrollTo('contact'),200)">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn btn-outline" onclick="showPage('forms'); setTab('worker')">Become a Worker</button>
+    <button class="btn btn-primary" onclick="showPage('forms'); setTab('customer')">Book Now</button>
+  </div>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">🏆 India's #1 Home Service Platform</div>
+        <h1>Find <span>Trusted Workers</span> Near Your Home</h1>
+        <p>Maids, cleaners, cooks, pregnancy care helpers and more — verified, background-checked, and at your doorstep within 30 minutes.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-white btn-lg" onclick="showPage('forms'); setTab('customer')">Book a Service</button>
+          <button class="btn btn-outline btn-lg" style="color:white; border-color:rgba(255,255,255,0.4);" onclick="showPage('forms'); setTab('worker')">Register as Worker</button>
+        </div>
+      </div>
+      <!-- Hero visual: photo card with floating stats -->
+      <div style="position:relative;">
+        <div style="border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3);background:#1e3a8a;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;">
+          <!-- SVG illustration of a worker at home -->
+          <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+            <rect width="480" height="360" fill="#1e40af"/>
+            <!-- Room background -->
+            <rect x="40" y="60" width="400" height="260" rx="12" fill="#dbeafe" opacity="0.15"/>
+            <!-- Window -->
+            <rect x="280" y="80" width="120" height="90" rx="6" fill="#bfdbfe" opacity="0.4"/>
+            <line x1="340" y1="80" x2="340" y2="170" stroke="white" stroke-width="2" opacity="0.5"/>
+            <line x1="280" y1="125" x2="400" y2="125" stroke="white" stroke-width="2" opacity="0.5"/>
+            <!-- Sunlight rays -->
+            <ellipse cx="340" cy="125" rx="60" ry="40" fill="#fbbf24" opacity="0.08"/>
+            <!-- Floor -->
+            <rect x="40" y="280" width="400" height="40" rx="4" fill="#1e40af" opacity="0.4"/>
+            <!-- Worker figure -->
+            <circle cx="180" cy="130" r="28" fill="#fde68a"/>
+            <!-- Hair -->
+            <ellipse cx="180" cy="108" rx="26" ry="12" fill="#92400e"/>
+            <!-- Body -->
+            <rect x="148" y="158" width="64" height="80" rx="14" fill="#6366f1"/>
+            <!-- Apron -->
+            <rect x="162" y="162" width="36" height="70" rx="8" fill="white" opacity="0.8"/>
+            <!-- Arms -->
+            <rect x="120" y="162" width="28" height="18" rx="9" fill="#fde68a"/>
+            <rect x="212" y="162" width="28" height="18" rx="9" fill="#fde68a"/>
+            <!-- Mop/broom -->
+            <rect x="230" y="110" width="6" height="130" rx="3" fill="#92400e"/>
+            <ellipse cx="233" cy="245" rx="18" ry="8" fill="#60a5fa" opacity="0.7"/>
+            <!-- Sparkles / clean marks -->
+            <text x="100" y="110" font-size="22" opacity="0.9">✨</text>
+            <text x="300" y="200" font-size="18" opacity="0.8">✨</text>
+            <text x="350" y="260" font-size="14" opacity="0.7">✨</text>
+            <!-- Checkmark badge -->
+            <circle cx="200" cy="135" r="12" fill="#16a34a"/>
+            <text x="194" y="140" font-size="12" fill="white">✓</text>
+          </svg>
+        </div>
+        <!-- Floating stat cards -->
+        <div style="position:absolute;top:-18px;left:-18px;background:white;border-radius:14px;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,0.18);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:1.5rem;">⭐</span>
+          <div>
+            <div style="font-weight:800;font-size:1rem;color:#111;">4.9 / 5</div>
+            <div style="font-size:0.72rem;color:#6b7280;">Avg. worker rating</div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:-18px;right:-18px;background:white;border-radius:14px;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,0.18);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:1.5rem;">⚡</span>
+          <div>
+            <div style="font-weight:800;font-size:1rem;color:#111;">30 min</div>
+            <div style="font-size:0.72rem;color:#6b7280;">Average arrival time</div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:60px;left:-22px;background:#16a34a;border-radius:14px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,0.2);display:flex;align-items:center;gap:8px;">
+          <span style="font-size:1.1rem;">🟢</span>
+          <div style="color:white;">
+            <div style="font-weight:700;font-size:0.82rem;">247 workers online</div>
+            <div style="font-size:0.68rem;opacity:0.85;">Near Surat right now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <div class="trust-icon">⏱️</div>
+        <h4>Quick Response</h4>
+        <p>Workers arrive within 30 minutes of booking</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✅</div>
+        <h4>100% Verified</h4>
+        <p>All workers are background checked and verified</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⭐</div>
+        <h4>Top Rated</h4>
+        <p>Only 4.5+ rated workers on our platform</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🛡️</div>
+        <h4>Guaranteed Service</h4>
+        <p>Money-back guarantee if not satisfied</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="services" class="section">
+    <div class="section-header">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-sub">Choose from our wide range of verified helpers</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" onclick="showPage('forms'); setTab('customer')">
+        <div class="service-img">🧹</div>
+        <div class="service-body">
+          <div class="service-name">Maid Service</div>
+          <div class="stars">★★★★★ <span>4.8 (1,240)</span></div>
+          <div class="service-price">₹499 <small>per visit</small></div>
+          <button class="btn btn-primary btn-full">Book Now</button>
+        </div>
+      </div>
+      <div class="service-card" onclick="showPage('forms'); setTab('customer')">
+        <div class="service-img">🏠</div>
+        <div class="service-body">
+          <div class="service-name">Full-Time Maid</div>
+          <div class="stars">★★★★★ <span>4.9 (856)</span></div>
+          <div class="service-price">₹12,000 <small>per month</small></div>
+          <button class="btn btn-primary btn-full">Book Now</button>
+        </div>
+      </div>
+      <div class="service-card" onclick="showPage('forms'); setTab('customer')">
+        <div class="service-img">🧽</div>
+        <div class="service-body">
+          <div class="service-name">Cleaning Service</div>
+          <div class="stars">★★★★☆ <span>4.7 (2,103)</span></div>
+          <div class="service-price">₹299 <small>per visit</small></div>
+          <button class="btn btn-primary btn-full">Book Now</button>
+        </div>
+      </div>
+      <div class="service-card" onclick="showPage('forms'); setTab('customer')">
+        <div class="service-img">🤱</div>
+        <div class="service-body">
+          <div class="service-name">Pregnancy Care Helper</div>
+          <div class="stars">★★★★★ <span>4.9 (432)</span></div>
+          <div class="service-price">₹799 <small>per day</small></div>
+          <button class="btn btn-primary btn-full">Book Now</button>
+        </div>
+      </div>
+      <div class="service-card" onclick="showPage('forms'); setTab('customer')">
+        <div class="service-img">👨‍🍳</div>
+        <div class="service-body">
+          <div class="service-name">Cook / Chef</div>
+          <div class="stars">★★★★★ <span>4.8 (672)</span></div>
+          <div class="service-price">₹599 <small>per visit</small></div>
+          <button class="btn btn-primary btn-full">Book Now</button>
+        </div>
+      </div>
+      <div class="service-card" onclick="showPage('forms'); setTab('customer')">
+        <div class="service-img">👴</div>
+        <div class="service-body">
+          <div class="service-name">Elderly Care</div>
+          <div class="stars">★★★★★ <span>4.9 (318)</span></div>
+          <div class="service-price">₹999 <small>per day</small></div>
+          <button class="btn btn-primary btn-full">Book Now</button>
+        </div>
+      </div>
+      <div class="service-card" onclick="showPage('forms'); setTab('customer')">
+        <div class="service-img">🚗</div>
+        <div class="service-body">
+          <div class="service-name">Driver</div>
+          <div class="stars">★★★★☆ <span>4.6 (891)</span></div>
+          <div class="service-price">₹499 <small>per day</small></div>
+          <button class="btn btn-primary btn-full">Book Now</button>
+        </div>
+      </div>
+      <div class="service-card" onclick="showPage('forms'); setTab('customer')">
+        <div class="service-img">💂</div>
+        <div class="service-body">
+          <div class="service-name">Security Guard</div>
+          <div class="stars">★★★★☆ <span>4.7 (203)</span></div>
+          <div class="service-price">₹18,000 <small>per month</small></div>
+          <button class="btn btn-primary btn-full">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-bg">
+    <div class="section">
+      <div class="section-header">
+        <span class="section-label">Process</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-sub">Simple 3-step process to get help at your doorstep</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Enter Your Society</h4>
+          <p>Type your society or area name. Our system finds verified workers within 5km of you instantly.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Workers Get Notified</h4>
+          <p>Nearby workers receive real-time notifications on their phones and can accept your request.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Get Service Done</h4>
+          <p>Confirm the booking, get worker details, and they arrive within 30 minutes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP SECTION -->
+  <div id="map-area" class="map-section">
+    <div class="map-wrapper">
+      <div class="section-header">
+        <span class="section-label">Smart Allocation</span>
+        <h2 class="section-title">How Worker Allocation Works</h2>
+        <p class="section-sub">After payment, our algorithm instantly finds and assigns the closest available verified worker to you</p>
+      </div>
+
+      <!-- Allocation flow explainer -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;position:relative;">
+        <div style="position:absolute;top:36px;left:18%;right:18%;height:2px;background:var(--primary-mid);z-index:0;"></div>
+        <div style="text-align:center;position:relative;z-index:1;">
+          <div style="width:72px;height:72px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.6rem;box-shadow:0 0 0 8px var(--primary-mid);">💳</div>
+          <h4 style="font-weight:700;margin-bottom:6px;">Pay Securely</h4>
+          <p style="font-size:0.85rem;color:var(--text-2);line-height:1.6;">Complete payment via UPI, card, or cash on arrival. Your booking is confirmed instantly.</p>
+        </div>
+        <div style="text-align:center;position:relative;z-index:1;">
+          <div style="width:72px;height:72px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.6rem;box-shadow:0 0 0 8px #ffedd5;">🧠</div>
+          <h4 style="font-weight:700;margin-bottom:6px;">Algorithm Runs</h4>
+          <p style="font-size:0.85rem;color:var(--text-2);line-height:1.6;">Our system checks all online workers by distance, rating, and availability — in seconds.</p>
+        </div>
+        <div style="text-align:center;position:relative;z-index:1;">
+          <div style="width:72px;height:72px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.6rem;box-shadow:0 0 0 8px var(--green-light);">✅</div>
+          <h4 style="font-weight:700;margin-bottom:6px;">Worker Assigned</h4>
+          <p style="font-size:0.85rem;color:var(--text-2);line-height:1.6;">You get one confirmed worker — name, photo, ETA — no browsing, no choosing required.</p>
+        </div>
+      </div>
+
+      <!-- Demo: simulate what the post-payment screen looks like -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.5rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:10px;">
+          <div style="font-weight:700;font-size:1rem;">🗺️ Post-Payment Allocation Preview</div>
+          <button class="btn btn-primary" onclick="runAllocationDemo()" id="demo-btn">▶ Simulate Payment & Allocate</button>
+        </div>
+        <div id="allocation-pending" style="text-align:center;padding:2rem;color:var(--text-3);font-size:0.9rem;">
+          Click the button above to see how the allocation works after payment
+        </div>
+        <div id="allocation-result" style="display:none;">
+          <!-- Map + assigned worker card shown after demo -->
+          <div style="display:grid;grid-template-columns:1fr 340px;gap:1.25rem;min-height:340px;">
+            <div id="map" style="border-radius:12px;overflow:hidden;background:#dbeafe;min-height:340px;">
+              <div id="map-placeholder" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#eff6ff,#dbeafe);">
+                <div style="text-align:center;color:var(--primary);padding:2rem;">
+                  <div style="font-size:2.5rem;margin-bottom:8px;">🗺️</div>
+                  <div style="font-size:0.85rem;">Add Google Maps API key for live map</div>
+                  <button class="btn btn-outline" style="margin-top:12px;font-size:0.8rem;" onclick="simulateMap()">Preview Demo Map</button>
+                </div>
+              </div>
+            </div>
+            <div id="assigned-worker-card" style="background:white;border-radius:12px;border:2px solid var(--green);padding:1.25rem;display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;gap:6px;color:var(--green);font-weight:700;font-size:0.85rem;">
+                <span class="pulse">●</span> Worker Assigned
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:56px;height:56px;border-radius:50%;background:var(--primary-mid);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">👩</div>
+                <div>
+                  <div style="font-weight:800;font-size:1rem;" id="aw-name">Sunita Devi</div>
+                  <div style="font-size:0.8rem;color:var(--text-3);" id="aw-skill">Maid Service · 5 yrs exp</div>
+                  <div style="color:#fbbf24;font-size:0.85rem;">★★★★★ <span style="color:var(--text-3);font-size:0.78rem;" id="aw-rating">4.9</span></div>
+                </div>
+              </div>
+              <div style="background:var(--green-light);border-radius:8px;padding:10px 12px;">
+                <div style="font-size:0.78rem;color:var(--green);font-weight:700;margin-bottom:2px;">📍 Distance from you</div>
+                <div style="font-size:1.1rem;font-weight:800;color:var(--green);" id="aw-dist">1.2 km away</div>
+              </div>
+              <div style="background:var(--primary-light);border-radius:8px;padding:10px 12px;">
+                <div style="font-size:0.78rem;color:var(--primary);font-weight:700;margin-bottom:2px;">⏱️ Estimated Arrival</div>
+                <div style="font-size:1.1rem;font-weight:800;color:var(--primary);" id="aw-eta">~12 minutes</div>
+              </div>
+              <div style="font-size:0.78rem;color:var(--text-3);text-align:center;line-height:1.5;">Worker has been notified and confirmed your booking. You'll receive an SMS shortly.</div>
+              <button class="btn btn-green btn-full" style="font-size:0.85rem;">📞 Call Worker</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <div id="reviews" class="section">
+    <div class="section-header">
+      <span class="section-label">Reviews</span>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="section-sub">Thousands of happy customers across Gujarat</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="reviewer">
+          <div class="reviewer-avatar">P</div>
+          <div><div class="reviewer-name">Priya Sharma</div><div class="reviewer-sub">Silver Oak Society, Surat</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Got a maid within 20 minutes of booking! She was professional, verified, and did an excellent job. Will definitely use Sahayak again."</p>
+      </div>
+      <div class="review-card">
+        <div class="reviewer">
+          <div class="reviewer-avatar">R</div>
+          <div><div class="reviewer-name">Rahul Patel</div><div class="reviewer-sub">Adajan, Surat</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Found a full-time cook through Sahayak. The background verification gave us complete confidence. Highly recommend to all families."</p>
+      </div>
+      <div class="review-card">
+        <div class="reviewer">
+          <div class="reviewer-avatar">M</div>
+          <div><div class="reviewer-name">Meena Joshi</div><div class="reviewer-sub">Vesu, Surat</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The pregnancy care helper from Sahayak was an absolute blessing. Caring, experienced, and available 24/7. Thank you Sahayak team!"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="contact">
+    <h2>Ready to Get Started?</h2>
+    <p>Join 50,000+ families already using Sahayak for their home service needs.</p>
+    <div class="cta-btns">
+      <button class="btn btn-white btn-lg" onclick="showPage('forms'); setTab('customer')">Book a Service Now</button>
+      <button class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:white;border:1.5px solid rgba(255,255,255,0.3);" onclick="showPage('forms'); setTab('worker')">Register as Worker</button>
+    </div>
+    <div style="margin-top:2rem;color:#bfdbfe;font-size:0.875rem;">
+      📞 Call us: +91 98765 43210 &nbsp;|&nbsp; ✉️ help@sahayak.in
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="color:white;cursor:default;">
+            <div class="logo-icon">स</div> Sahayak
+          </div>
+          <p>India's most trusted home services platform. Connecting verified workers with families who need them.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a>Maid Service</a></li>
+            <li><a>Full-Time Maid</a></li>
+            <li><a>Cleaning Service</a></li>
+            <li><a>Cook / Chef</a></li>
+            <li><a>Elderly Care</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a>About Us</a></li>
+            <li><a>Blog</a></li>
+            <li><a>Careers</a></li>
+            <li><a>Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <ul>
+            <li><a>Help Center</a></li>
+            <li><a>Privacy Policy</a></li>
+            <li><a>Terms of Service</a></li>
+            <li><a onclick="showPage('forms'); setTab('worker')">Register as Worker</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Sahayak. All rights reserved. Made with ❤️ in Surat, Gujarat.</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== FORMS PAGE ===== -->
+<div id="page-forms" class="page">
+  <!-- Top bar with back button -->
+  <div style="background:var(--primary);padding:0.875rem 2rem;display:flex;align-items:center;gap:16px;">
+    <button onclick="showPage('home')" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:6px 16px;border-radius:6px;cursor:pointer;font-family:var(--font);font-weight:600;font-size:0.875rem;">← Back to Home</button>
+    <span style="color:rgba(255,255,255,0.85);font-size:0.875rem;" id="forms-breadcrumb">Worker Registration</span>
+  </div>
+
+  <div class="forms-page">
+    <!-- Sticky tab switcher -->
+    <div class="forms-tab-header">
+      <div class="forms-tabs">
+        <button class="tab-btn active" id="tab-worker" onclick="setTab('worker')">👷 Register as Worker</button>
+        <button class="tab-btn" id="tab-customer" onclick="setTab('customer')">📋 Book a Service</button>
+      </div>
+    </div>
+
+    <div class="forms-body">
+      <!-- Context banner (swaps with tab) -->
+      <div class="form-context-banner" id="banner-worker">
+        <div class="banner-icon">👷</div>
+        <div>
+          <h4>Worker Registration</h4>
+          <p>Join thousands of verified workers. Fill in your details to start earning through Sahayak.</p>
+        </div>
+      </div>
+      <div class="form-context-banner" id="banner-customer" style="display:none; background:#fff7ed; border-color:#fed7aa;">
+        <div class="banner-icon">📋</div>
+        <div>
+          <h4 style="color:#c2410c;">Book a Service</h4>
+          <p>Tell us what you need and we'll find verified workers near you instantly.</p>
+        </div>
+      </div>
+
+    <!-- WORKER FORM -->
+    <div id="form-worker" class="form-card">
+      <div class="success-banner" id="worker-success">
+        ✅ Registration successful! We'll verify your profile within 24 hours and activate your account.
+      </div>
+      <h2>Worker Registration</h2>
+      <p class="subtitle">Join thousands of verified workers earning through Sahayak. Fill in your details below.</p>
+
+      <div class="form-section-title">Personal Information</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name <span>*</span></label>
+          <input class="form-control" type="text" placeholder="Ramesh Kumar">
+        </div>
+        <div class="form-group">
+          <label>Phone Number <span>*</span></label>
+          <input class="form-control" type="tel" placeholder="+91 9876543210">
+        </div>
+        <div class="form-group">
+          <label>Age <span>*</span></label>
+          <input class="form-control" type="number" placeholder="25" min="18" max="65">
+        </div>
+        <div class="form-group">
+          <label>Gender <span>*</span></label>
+          <select class="form-control">
+            <option>Select gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Email Address</label>
+          <input class="form-control" type="email" placeholder="ramesh@email.com">
+        </div>
+      </div>
+
+      <hr class="form-divider">
+      <div class="form-section-title">Skills & Services</div>
+      <div class="form-group full">
+        <label>What services can you provide? <span>*</span></label>
+        <div class="skill-chips">
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">🧹 Maid Service</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">🧽 Deep Cleaning</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">👨‍🍳 Cooking</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">🤱 Pregnancy Care</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">👴 Elderly Care</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">🚗 Driving</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">💂 Security</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">🌿 Gardening</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">👶 Baby Care</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">🔧 Plumbing</span>
+          <span class="skill-chip" onclick="this.classList.toggle('selected')">⚡ Electrical</span>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Years of Experience <span>*</span></label>
+          <select class="form-control">
+            <option>Less than 1 year</option>
+            <option>1–2 years</option>
+            <option>3–5 years</option>
+            <option>5–10 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Expected Pay</label>
+          <input class="form-control" type="text" placeholder="e.g. ₹8,000/month">
+        </div>
+      </div>
+
+      <hr class="form-divider">
+      <div class="form-section-title">📍 Your Live Location (For Job Matching)</div>
+
+      <!-- GPS permission card -->
+      <div id="worker-gps-card" style="background:var(--primary-light);border:1.5px solid var(--primary-mid);border-radius:14px;padding:1.25rem;margin-bottom:1.25rem;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="font-size:1.8rem;margin-top:2px;">📡</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:0.95rem;color:var(--primary);margin-bottom:4px;">Share Your Live Location</div>
+            <div style="font-size:0.82rem;color:var(--text-2);line-height:1.6;margin-bottom:12px;">We use your real-time GPS to match you with nearby customers the moment they book. Your exact location is only shared after a job is confirmed — never publicly visible.</div>
+            <div id="worker-gps-status" style="display:none;background:var(--green-light);border-radius:8px;padding:8px 12px;font-size:0.82rem;color:var(--green);font-weight:600;margin-bottom:10px;">
+              ✅ Location captured — <span id="worker-gps-coords"></span>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="captureWorkerLocation()" id="worker-gps-btn">
+                📍 Allow & Capture My Location
+              </button>
+              <button class="btn btn-outline" style="font-size:0.82rem;" onclick="showWorkerManualAddress()">
+                ✏️ Enter address manually instead
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manual address fields (hidden by default, shown as fallback) -->
+      <div id="worker-manual-address" style="display:none;">
+        <div style="font-size:0.8rem;color:var(--text-3);margin-bottom:10px;">📝 Manual address entry — GPS is more accurate for matching</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Society / Colony Name <span>*</span></label>
+            <input class="form-control" id="worker-society" type="text" placeholder="Silver Oak Society">
+          </div>
+          <div class="form-group">
+            <label>City <span>*</span></label>
+            <input class="form-control" type="text" placeholder="Surat" value="Surat">
+          </div>
+          <div class="form-group full">
+            <label>Full Address <span>*</span></label>
+            <input class="form-control" id="worker-full-address" type="text" placeholder="House no, Street, Area, City, PIN">
+          </div>
+          <div class="form-group">
+            <label>Pincode <span>*</span></label>
+            <input class="form-control" type="text" placeholder="395001">
+          </div>
+          <div class="form-group">
+            <label>Willing to Travel Up To</label>
+            <select class="form-control">
+              <option>2 km</option>
+              <option selected>5 km</option>
+              <option>10 km</option>
+              <option>15 km</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="map-mini" id="worker-map-mini">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--primary-light);color:var(--primary);font-size:0.85rem;gap:8px;">
+          📍 Your pinned location will appear here
+        </div>
+      </div>
+
+      <hr class="form-divider">
+      <div class="form-section-title">Availability</div>
+      <div class="form-group">
+        <label>Available Days</label>
+        <div class="availability-grid">
+          <div class="avail-chip" onclick="this.classList.toggle('selected')">Mon</div>
+          <div class="avail-chip selected" onclick="this.classList.toggle('selected')">Tue</div>
+          <div class="avail-chip selected" onclick="this.classList.toggle('selected')">Wed</div>
+          <div class="avail-chip selected" onclick="this.classList.toggle('selected')">Thu</div>
+          <div class="avail-chip selected" onclick="this.classList.toggle('selected')">Fri</div>
+          <div class="avail-chip" onclick="this.classList.toggle('selected')">Sat</div>
+          <div class="avail-chip" onclick="this.classList.toggle('selected')">Sun</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Available From</label>
+          <input class="form-control" type="time" value="08:00">
+        </div>
+        <div class="form-group">
+          <label>Available Until</label>
+          <input class="form-control" type="time" value="18:00">
+        </div>
+      </div>
+
+      <hr class="form-divider">
+      <div class="form-section-title">Documents & Verification</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Aadhaar Card <span>*</span></label>
+          <input class="form-control" type="file" accept="image/*,.pdf">
+        </div>
+        <div class="form-group">
+          <label>Profile Photo <span>*</span></label>
+          <input class="form-control" type="file" accept="image/*">
+        </div>
+        <div class="form-group full">
+          <label>About Yourself</label>
+          <textarea class="form-control" placeholder="Brief description about your experience, skills, and why customers should hire you..."></textarea>
+        </div>
+      </div>
+
+      <button class="btn btn-green btn-full btn-lg" onclick="submitWorker()" style="margin-top:0.5rem;">
+        ✅ Submit Registration
+      </button>
+      <p style="text-align:center;font-size:0.78rem;color:var(--text-3);margin-top:10px;">
+        Your profile will be reviewed within 24 hours. Background verification is mandatory.
+      </p>
+    </div>
+
+    <!-- CUSTOMER FORM -->
+    <div id="form-customer" class="form-card" style="display:none;">
+      <div class="success-banner" id="customer-success">
+        ✅ Booking request sent! Nearby workers have been notified. You'll receive confirmation within 5 minutes.
+      </div>
+      <h2>Book a Service</h2>
+      <p class="subtitle">Tell us what you need and we'll find the best workers near you instantly.</p>
+
+      <!-- Quick Worker Search -->
+      <div style="background:var(--primary-light);border:1.5px solid var(--primary-mid);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:2rem;">
+        <div style="font-weight:700;font-size:0.9rem;color:var(--primary);margin-bottom:1rem;display:flex;align-items:center;gap:8px;">🔍 Quick Search — Find Available Workers Now</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:flex-end;">
+          <div>
+            <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text-2);margin-bottom:5px;">Service Type</label>
+            <select class="search-input" id="quick-service" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--font);font-size:0.875rem;background:white;">
+              <option>Select service...</option>
+              <option>Maid Service</option>
+              <option>Full-Time Maid</option>
+              <option>Cleaning Service</option>
+              <option>Pregnancy Care Helper</option>
+              <option>Cook / Chef</option>
+              <option>Elderly Care</option>
+              <option>Driver</option>
+              <option>Security Guard</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text-2);margin-bottom:5px;">Society / Area</label>
+            <input class="search-input" id="quick-society" type="text" placeholder="e.g. Silver Oak Society" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--font);font-size:0.875rem;">
+          </div>
+          <button class="btn btn-primary" onclick="quickSearch()" style="white-space:nowrap;padding:10px 18px;">Search Workers →</button>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-3);margin-top:8px;">Workers within 5km radius will be notified instantly</p>
+      </div>
+
+      <div class="form-section-title">Your Details</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name <span>*</span></label>
+          <input class="form-control" type="text" placeholder="Priya Sharma">
+        </div>
+        <div class="form-group">
+          <label>Phone Number <span>*</span></label>
+          <input class="form-control" type="tel" placeholder="+91 9876543210">
+        </div>
+        <div class="form-group full">
+          <label>Email Address</label>
+          <input class="form-control" type="email" placeholder="priya@email.com">
+        </div>
+      </div>
+
+      <hr class="form-divider">
+      <div class="form-section-title">Service Details</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Service Required <span>*</span></label>
+          <select class="form-control" id="cust-service">
+            <option>Select service...</option>
+            <option>Maid Service</option>
+            <option>Full-Time Maid</option>
+            <option>Cleaning Service</option>
+            <option>Pregnancy Care Helper</option>
+            <option>Cook / Chef</option>
+            <option>Elderly Care</option>
+            <option>Driver</option>
+            <option>Security Guard</option>
+            <option>Baby Care</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Frequency</label>
+          <select class="form-control">
+            <option>One-time</option>
+            <option>Daily</option>
+            <option>Weekly</option>
+            <option>Monthly</option>
+            <option>Full-time (permanent)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Start Date <span>*</span></label>
+          <input class="form-control" type="date">
+        </div>
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <select class="form-control">
+            <option>Morning (7am–12pm)</option>
+            <option>Afternoon (12pm–5pm)</option>
+            <option>Evening (5pm–9pm)</option>
+            <option>Any time</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Special Requirements</label>
+          <textarea class="form-control" placeholder="Any special instructions, preferences, or requirements for the worker..."></textarea>
+        </div>
+      </div>
+
+      <hr class="form-divider">
+      <div class="form-section-title">📍 Your Location (Used to Find Closest Worker)</div>
+      <!-- Customer GPS card -->
+      <div id="cust-gps-card" style="background:var(--primary-light);border:1.5px solid var(--primary-mid);border-radius:14px;padding:1.25rem;margin-bottom:1.25rem;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="font-size:1.8rem;margin-top:2px;">📡</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:0.95rem;color:var(--primary);margin-bottom:4px;">Use Your Live Location</div>
+            <div style="font-size:0.82rem;color:var(--text-2);line-height:1.6;margin-bottom:12px;">For the most accurate worker match, allow us to use your GPS. This helps the algorithm find whoever is closest to you right now.</div>
+            <div id="cust-gps-status" style="display:none;background:var(--green-light);border-radius:8px;padding:8px 12px;font-size:0.82rem;color:var(--green);font-weight:600;margin-bottom:10px;">
+              ✅ Location captured — <span id="cust-gps-coords"></span>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="captureCustomerLocation()" id="cust-gps-btn">
+                📍 Use My Live Location
+              </button>
+              <button class="btn btn-outline" style="font-size:0.82rem;" onclick="showCustManualAddress()">
+                ✏️ Enter address manually
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Manual address fields -->
+      <div id="cust-manual-address" style="display:none;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Society / Colony Name <span>*</span></label>
+            <input class="form-control" id="cust-society" type="text" placeholder="e.g. Silver Oak Society">
+          </div>
+          <div class="form-group">
+            <label>City <span>*</span></label>
+            <input class="form-control" type="text" placeholder="Surat" value="Surat">
+          </div>
+          <div class="form-group full">
+            <label>Full Address <span>*</span></label>
+            <input class="form-control" type="text" placeholder="House no, Street, Area, City, PIN">
+          </div>
+          <div class="form-group">
+            <label>Preferred Worker Gender</label>
+            <select class="form-control">
+              <option>No preference</option>
+              <option>Female preferred</option>
+              <option>Male preferred</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="map-mini" id="cust-map-mini" style="display:none;">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--primary-light);color:var(--primary);font-size:0.85rem;gap:8px;">
+          📍 Your location pinned
+        </div>
+      </div>
+
+      <hr class="form-divider">
+      <div class="form-section-title">💳 Payment — Worker is Assigned After This</div>
+      <div style="background:#fffbeb;border:1.5px solid #fde68a;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:0.85rem;color:#92400e;display:flex;gap:10px;align-items:flex-start;">
+        <span style="font-size:1.2rem;margin-top:1px;">⚡</span>
+        <div><strong>How it works:</strong> Once you pay, our algorithm instantly finds the closest available verified worker and assigns them to you. You won't need to pick — we handle it.</div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Budget Range</label>
+          <select class="form-control" id="cust-budget">
+            <option>Up to ₹500/visit</option>
+            <option>₹500–₹1,000/visit</option>
+            <option>₹1,000–₹5,000/month</option>
+            <option>₹5,000–₹15,000/month</option>
+            <option>Discuss with worker</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Payment Method <span>*</span></label>
+          <select class="form-control" id="payment-method" onchange="togglePaymentUI(this.value)">
+            <option value="">Select payment...</option>
+            <option value="upi">UPI / PhonePe / GPay</option>
+            <option value="card">Credit / Debit Card</option>
+            <option value="netbanking">Net Banking</option>
+            <option value="cod">Cash on Arrival</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- UPI panel -->
+      <div id="pay-upi" class="pay-panel" style="display:none;background:var(--primary-light);border:1.5px solid var(--primary-mid);border-radius:12px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="font-weight:700;font-size:0.875rem;margin-bottom:10px;color:var(--primary);">📲 Pay via UPI</div>
+        <div class="form-grid">
+          <div class="form-group" style="margin-bottom:0;">
+            <label>UPI ID</label>
+            <input class="form-control" type="text" placeholder="yourname@upi" id="upi-id">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label>Or scan QR</label>
+            <div style="background:white;border-radius:8px;padding:8px;text-align:center;font-size:0.78rem;color:var(--text-3);border:1px solid var(--border);">QR will appear here at checkout</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card panel -->
+      <div id="pay-card" class="pay-panel" style="display:none;background:var(--primary-light);border:1.5px solid var(--primary-mid);border-radius:12px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="font-weight:700;font-size:0.875rem;margin-bottom:10px;color:var(--primary);">💳 Card Details</div>
+        <div class="form-group" style="margin-bottom:10px;">
+          <label>Card Number</label>
+          <input class="form-control" type="text" placeholder="•••• •••• •••• ••••" maxlength="19" id="card-num" oninput="formatCard(this)">
+        </div>
+        <div class="form-grid">
+          <div class="form-group" style="margin-bottom:0;">
+            <label>Expiry</label>
+            <input class="form-control" type="text" placeholder="MM / YY" maxlength="7">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label>CVV</label>
+            <input class="form-control" type="password" placeholder="•••" maxlength="4">
+          </div>
+        </div>
+      </div>
+
+      <!-- Net banking panel -->
+      <div id="pay-netbanking" class="pay-panel" style="display:none;background:var(--primary-light);border:1.5px solid var(--primary-mid);border-radius:12px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="font-weight:700;font-size:0.875rem;margin-bottom:10px;color:var(--primary);">🏦 Net Banking</div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label>Select Bank</label>
+          <select class="form-control">
+            <option>State Bank of India</option>
+            <option>HDFC Bank</option>
+            <option>ICICI Bank</option>
+            <option>Axis Bank</option>
+            <option>Kotak Mahindra</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- COD panel -->
+      <div id="pay-cod" class="pay-panel" style="display:none;background:var(--green-light);border:1.5px solid #bbf7d0;border-radius:12px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:1.3rem;">💵</span>
+          <div>
+            <div style="font-weight:700;font-size:0.875rem;color:var(--green);">Cash on Arrival</div>
+            <div style="font-size:0.82rem;color:#166534;margin-top:4px;line-height:1.5;">Pay directly to the worker when they arrive. A ₹49 platform fee is charged online to confirm your booking slot.</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full btn-lg" onclick="initiatePayment()" style="margin-top:0.5rem;" id="pay-btn">
+        💳 Pay & Confirm Booking →
+      </button>
+      <p style="text-align:center;font-size:0.78rem;color:var(--text-3);margin-top:10px;">
+        🔒 Secured by 256-bit SSL encryption &nbsp;·&nbsp; Worker assigned instantly after payment
+      </p>
+    </div> <!-- end forms-body -->
+  </div>
+</div>
+
+<!-- PAYMENT PROCESSING MODAL -->
+<div class="modal-overlay" id="payment-modal">
+  <div class="modal" style="max-width:440px;">
+    <div id="pay-processing" style="text-align:center;padding:1rem 0;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;animation:spin 1s linear infinite;display:inline-block;">⚙️</div>
+      <h3 style="font-family:var(--font-display);margin-bottom:8px;">Processing Payment...</h3>
+      <p style="color:var(--text-2);font-size:0.875rem;">Please wait while we confirm your payment securely.</p>
+      <div style="margin-top:1.5rem;height:4px;background:var(--border);border-radius:2px;overflow:hidden;">
+        <div id="pay-progress-bar" style="height:100%;background:var(--primary);border-radius:2px;width:0%;transition:width 0.1s;"></div>
+      </div>
+    </div>
+    <div id="pay-done" style="display:none;text-align:center;padding:1rem 0;">
+      <div style="font-size:2.5rem;margin-bottom:0.75rem;">✅</div>
+      <h3 style="font-family:var(--font-display);margin-bottom:6px;color:var(--green);">Payment Successful!</h3>
+      <p style="color:var(--text-2);font-size:0.875rem;margin-bottom:1.25rem;">Running allocation algorithm...</p>
+      <div style="background:var(--bg);border-radius:10px;padding:1rem;font-size:0.82rem;color:var(--text-2);text-align:left;line-height:1.8;">
+        <div id="algo-step-1" style="opacity:0.3;">📡 Scanning workers online near you...</div>
+        <div id="algo-step-2" style="opacity:0.3;">📏 Calculating distances by live GPS...</div>
+        <div id="algo-step-3" style="opacity:0.3;">⭐ Scoring by rating + experience...</div>
+        <div id="algo-step-4" style="opacity:0.3;">🔒 Confirming worker availability...</div>
+        <div id="algo-step-5" style="opacity:0.3;">✅ Assigning closest match...</div>
+      </div>
+    </div>
+    <div id="pay-allocated" style="display:none;">
+      <div style="text-align:center;margin-bottom:1.25rem;">
+        <div style="font-size:2rem;margin-bottom:6px;">🎉</div>
+        <h3 style="font-family:var(--font-display);color:var(--green);">Worker Assigned!</h3>
+        <p style="font-size:0.82rem;color:var(--text-2);">The closest available worker has been confirmed for your booking.</p>
+      </div>
+      <div style="background:var(--green-light);border:1.5px solid #bbf7d0;border-radius:12px;padding:1.25rem;display:flex;gap:14px;align-items:center;margin-bottom:1rem;">
+        <div style="width:54px;height:54px;background:var(--primary-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;" id="modal-worker-icon">👩</div>
+        <div>
+          <div style="font-weight:800;font-size:1.05rem;" id="modal-worker-name">Sunita Devi</div>
+          <div style="font-size:0.78rem;color:var(--text-2);" id="modal-worker-skill">Maid Service · 5 yrs exp · ⭐ 4.9</div>
+          <div style="margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;">
+            <span style="background:white;border-radius:6px;padding:3px 10px;font-size:0.78rem;font-weight:700;color:var(--green);" id="modal-worker-dist">📍 1.2 km away</span>
+            <span style="background:white;border-radius:6px;padding:3px 10px;font-size:0.78rem;font-weight:700;color:var(--primary);" id="modal-worker-eta">⏱️ ~12 min ETA</span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-3);text-align:center;margin-bottom:1rem;">Worker has been notified. You'll receive an SMS confirmation shortly.</p>
+      <button class="btn btn-green btn-full" onclick="closePaymentModal()">Done — View Booking ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- keep legacy notify modal id so old refs don't break -->
+<div class="modal-overlay" id="notify-modal" style="display:none!important;"></div>
+
+<script>
+/* ===== PAGE SYSTEM ===== */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+}
+function showSection(id) { showPage('home'); setTimeout(() => scrollTo(id), 100); }
+function scrollTo(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+/* ===== TABS ===== */
+function setTab(tab) {
+  ['worker','customer'].forEach(t => {
+    document.getElementById('tab-' + t).classList.toggle('active', t === tab);
+    document.getElementById('form-' + t).style.display = t === tab ? 'block' : 'none';
+    const banner = document.getElementById('banner-' + t);
+    if (banner) banner.style.display = t === tab ? 'flex' : 'none';
+  });
+  const bc = document.getElementById('forms-breadcrumb');
+  if (bc) bc.textContent = tab === 'worker' ? 'Worker Registration' : 'Book a Service';
+}
+
+/* ===== QUICK SEARCH ===== */
+function quickSearch() {
+  const svc = document.getElementById('quick-service').value;
+  const soc = document.getElementById('quick-society').value.trim();
+  if (!soc) { alert('Please enter your society or area name.'); return; }
+  document.getElementById('notify-society') && (document.getElementById('notify-society').textContent = soc);
+}
+
+/* ===== MOCK WORKERS DATA (sorted by distance — closest first) ===== */
+const mockWorkers = [
+  { name: 'Ramesh Patel',  skill: 'Driver',          exp: '10 yrs', distKm: 0.8, rating: 4.8, icon: '👨', lat: 21.172, lng: 72.845 },
+  { name: 'Sunita Devi',   skill: 'Maid Service',    exp: '5 yrs',  distKm: 1.2, rating: 4.9, icon: '👩', lat: 21.175, lng: 72.831 },
+  { name: 'Geeta Singh',   skill: 'Pregnancy Care',  exp: '6 yrs',  distKm: 2.1, rating: 4.9, icon: '👩', lat: 21.185, lng: 72.820 },
+  { name: 'Kamla Ben',     skill: 'Full-Time Maid',  exp: '8 yrs',  distKm: 2.4, rating: 4.8, icon: '👩', lat: 21.180, lng: 72.838 },
+  { name: 'Radha Kumari',  skill: 'Cleaning Service',exp: '3 yrs',  distKm: 3.7, rating: 4.7, icon: '👩', lat: 21.168, lng: 72.825 },
+];
+
+/* ===== ALLOCATION ALGORITHM ===== */
+function allocateWorker(serviceType) {
+  // Filter by skill match, then sort by distance (closest first), then rating
+  const filtered = mockWorkers.filter(w => {
+    if (!serviceType || serviceType === 'Select service...') return true;
+    const s = serviceType.toLowerCase();
+    return w.skill.toLowerCase().includes(s.split(' ')[0]) || s.includes('maid') && w.skill.includes('Maid');
+  });
+  const sorted = filtered.sort((a, b) => a.distKm - b.distKm || b.rating - a.rating);
+  return sorted[0]; // return closest
+}
+
+/* ===== PAYMENT FLOW ===== */
+function togglePaymentUI(val) {
+  document.querySelectorAll('.pay-panel').forEach(p => p.style.display = 'none');
+  if (val && val !== '') {
+    const el = document.getElementById('pay-' + val);
+    if (el) el.style.display = 'block';
+  }
+}
+
+function formatCard(input) {
+  let v = input.value.replace(/\D/g, '').substring(0, 16);
+  input.value = v.replace(/(.{4})/g, '$1 ').trim();
+}
+
+function initiatePayment() {
+  const method = document.getElementById('payment-method').value;
+  if (!method) { alert('Please select a payment method.'); return; }
+  // Show payment modal
+  const modal = document.getElementById('payment-modal');
+  modal.classList.add('open');
+  document.getElementById('pay-processing').style.display = 'block';
+  document.getElementById('pay-done').style.display = 'none';
+  document.getElementById('pay-allocated').style.display = 'none';
+  // Animate progress bar
+  let progress = 0;
+  const bar = document.getElementById('pay-progress-bar');
+  const fill = setInterval(() => {
+    progress += 4;
+    bar.style.width = Math.min(progress, 100) + '%';
+    if (progress >= 100) {
+      clearInterval(fill);
+      setTimeout(showAllocationAnimation, 300);
+    }
+  }, 60);
+}
+
+function showAllocationAnimation() {
+  document.getElementById('pay-processing').style.display = 'none';
+  document.getElementById('pay-done').style.display = 'block';
+  const steps = ['algo-step-1','algo-step-2','algo-step-3','algo-step-4','algo-step-5'];
+  steps.forEach((id, i) => {
+    setTimeout(() => {
+      document.getElementById(id).style.opacity = '1';
+      document.getElementById(id).style.fontWeight = '600';
+    }, i * 400);
+  });
+  setTimeout(() => {
+    const serviceType = document.getElementById('cust-service') ? document.getElementById('cust-service').value : '';
+    const worker = allocateWorker(serviceType);
+    document.getElementById('modal-worker-icon').textContent = worker.icon;
+    document.getElementById('modal-worker-name').textContent = worker.name;
+    document.getElementById('modal-worker-skill').textContent = `${worker.skill} · ${worker.exp} exp · ⭐ ${worker.rating}`;
+    document.getElementById('modal-worker-dist').textContent = `📍 ${worker.distKm} km away`;
+    const eta = Math.round(worker.distKm * 8 + 4);
+    document.getElementById('modal-worker-eta').textContent = `⏱️ ~${eta} min ETA`;
+    document.getElementById('pay-done').style.display = 'none';
+    document.getElementById('pay-allocated').style.display = 'block';
+    document.getElementById('customer-success') && document.getElementById('customer-success').classList.add('show');
+  }, steps.length * 400 + 500);
+}
+
+function closePaymentModal() {
+  document.getElementById('payment-modal').classList.remove('open');
+}
+
+/* ===== ALLOCATION DEMO (homepage map section) ===== */
+function runAllocationDemo() {
+  document.getElementById('allocation-pending').style.display = 'none';
+  document.getElementById('allocation-result').style.display = 'grid';
+  document.getElementById('demo-btn').textContent = '✓ Demo Running';
+  document.getElementById('demo-btn').disabled = true;
+  // Pick closest worker
+  const w = mockWorkers[0];
+  document.getElementById('aw-name').textContent = w.name;
+  document.getElementById('aw-skill').textContent = `${w.skill} · ${w.exp}`;
+  document.getElementById('aw-rating').textContent = w.rating;
+  document.getElementById('aw-dist').textContent = `${w.distKm} km away`;
+  document.getElementById('aw-eta').textContent = `~${Math.round(w.distKm * 8 + 4)} minutes`;
+  simulateMap();
+}
+
+/* ===== WORKER GPS LOCATION ===== */
+function captureWorkerLocation() {
+  const btn = document.getElementById('worker-gps-btn');
+  if (!navigator.geolocation) {
+    alert('Geolocation is not supported by your browser. Please enter address manually.');
+    showWorkerManualAddress(); return;
+  }
+  btn.textContent = '⏳ Requesting permission...';
+  btn.disabled = true;
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      // Store coords
+      window.workerLat = lat; window.workerLng = lng;
+      // Show status
+      document.getElementById('worker-gps-status').style.display = 'block';
+      document.getElementById('worker-gps-coords').textContent = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+      btn.textContent = '✅ Location Captured';
+      btn.style.background = 'var(--green)';
+      // Show mini map confirmation
+      const mini = document.getElementById('worker-map-mini');
+      mini.innerHTML = `<div style="width:100%;height:100%;background:var(--green-light);display:flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;color:var(--green);font-size:0.85rem;font-weight:600;">✅ GPS location pinned — ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>`;
+      // Reverse geocode if Maps API loaded
+      if (window.google && window.google.maps) {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+          if (status === 'OK' && results[0]) {
+            const addr = results[0].formatted_address;
+            const societyEl = document.getElementById('worker-society');
+            const addrEl = document.getElementById('worker-full-address');
+            if (societyEl) societyEl.value = addr.split(',')[0];
+            if (addrEl) addrEl.value = addr;
+            showWorkerManualAddress(); // show fields pre-filled
+          }
+        });
+      }
+    },
+    err => {
+      btn.textContent = '📍 Allow & Capture My Location';
+      btn.disabled = false;
+      if (err.code === 1) {
+        alert('Location permission denied. Please allow location access or enter your address manually.');
+      } else {
+        alert('Could not get location. Please enter address manually.');
+      }
+      showWorkerManualAddress();
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+function showWorkerManualAddress() {
+  document.getElementById('worker-manual-address').style.display = 'block';
+}
+
+/* ===== CUSTOMER GPS LOCATION ===== */
+function captureCustomerLocation() {
+  const btn = document.getElementById('cust-gps-btn');
+  if (!navigator.geolocation) {
+    alert('Geolocation not supported. Please enter your address manually.');
+    showCustManualAddress(); return;
+  }
+  btn.textContent = '⏳ Requesting permission...';
+  btn.disabled = true;
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      window.custLat = lat; window.custLng = lng;
+      document.getElementById('cust-gps-status').style.display = 'block';
+      document.getElementById('cust-gps-coords').textContent = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+      btn.textContent = '✅ Location Captured';
+      btn.style.background = 'var(--green)';
+      const mini = document.getElementById('cust-map-mini');
+      mini.style.display = 'block';
+      mini.innerHTML = `<div style="width:100%;height:100%;background:var(--green-light);display:flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;color:var(--green);font-size:0.85rem;font-weight:600;">✅ Your location set — ${lat.toFixed(4)}, ${lng.toFixed(4)}</div>`;
+      if (window.google && window.google.maps) {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+          if (status === 'OK' && results[0]) {
+            const el = document.getElementById('cust-society');
+            if (el) { el.value = results[0].formatted_address.split(',')[0]; showCustManualAddress(); }
+          }
+        });
+      }
+    },
+    err => {
+      btn.textContent = '📍 Use My Live Location';
+      btn.disabled = false;
+      alert(err.code === 1 ? 'Permission denied. Please allow location or enter address manually.' : 'Could not get location. Enter address manually.');
+      showCustManualAddress();
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+function showCustManualAddress() {
+  document.getElementById('cust-manual-address').style.display = 'block';
+}
+
+/* ===== WORKER REGISTRATION SUBMIT ===== */
+function submitWorker() {
+  document.getElementById('worker-success').classList.add('show');
+  window.scrollTo({ top: document.getElementById('form-worker').offsetTop - 80, behavior: 'smooth' });
+}
+
+/* legacy stubs */
+function submitCustomer() { initiatePayment(); }
+function closeModal() {}
+function updateMapSearch() {}
+function workerMapSearch() {}
+function customerMapSearch() {}
+function locateMe() { captureCustomerLocation(); }
+function notifyNearbyWorkers() {}
+
+/* ===== SIMULATE MAP (demo) ===== */
+function simulateMap() {
+  const ph = document.getElementById('map-placeholder');
+  if (!ph) return;
+  ph.innerHTML = `
+    <div style="width:100%;height:100%;position:relative;background:#e8f4f0;display:flex;align-items:center;justify-content:center;">
+      <svg width="100%" height="100%" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+        <rect width="600" height="340" fill="#e8f0e8"/>
+        <rect x="50" y="0" width="36" height="340" fill="#d4d4d4" opacity="0.6"/>
+        <rect x="200" y="0" width="36" height="340" fill="#d4d4d4" opacity="0.6"/>
+        <rect x="380" y="0" width="50" height="340" fill="#d4d4d4" opacity="0.6"/>
+        <rect x="0" y="80" width="600" height="28" fill="#d4d4d4" opacity="0.6"/>
+        <rect x="0" y="220" width="600" height="28" fill="#d4d4d4" opacity="0.6"/>
+        <circle cx="300" cy="180" r="70" fill="rgba(37,99,235,0.1)" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <!-- You -->
+        <circle cx="300" cy="180" r="11" fill="#2563eb"/>
+        <text x="300" y="184" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">📍</text>
+        <rect x="263" y="194" width="74" height="16" rx="4" fill="white" opacity="0.9"/>
+        <text x="300" y="205" text-anchor="middle" font-size="9" fill="#111" font-family="sans-serif">You are here</text>
+        <!-- ASSIGNED worker (highlighted) -->
+        <circle cx="260" cy="135" r="13" fill="#16a34a" stroke="white" stroke-width="3"/>
+        <text x="260" y="139" text-anchor="middle" font-size="10" fill="white" font-family="sans-serif">👨</text>
+        <rect x="220" y="152" width="80" height="16" rx="4" fill="#16a34a" opacity="0.95"/>
+        <text x="260" y="163" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">ASSIGNED · 0.8km</text>
+        <!-- Other workers (greyed out) -->
+        <circle cx="360" cy="145" r="9" fill="#9ca3af"/>
+        <text x="360" y="149" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">👩</text>
+        <circle cx="230" cy="245" r="9" fill="#9ca3af"/>
+        <text x="230" y="249" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">👩</text>
+        <circle cx="370" cy="250" r="9" fill="#9ca3af"/>
+        <text x="370" y="254" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">👩</text>
+      </svg>
+      <div style="position:absolute;bottom:10px;right:10px;background:white;padding:6px 10px;border-radius:8px;font-size:0.72rem;color:var(--text-2);box-shadow:var(--shadow);">🟢 Demo — Add Maps API key for live</div>
+    </div>`;
+}
+
+/* ===== GOOGLE MAPS INIT ===== */
+function initMap() {
+  const center = { lat: 21.1702, lng: 72.8311 };
+  const ph = document.getElementById('map-placeholder');
+  if (ph) ph.remove();
+  window.gMap = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13, center,
+    styles: [{ featureType:'poi', stylers:[{visibility:'off'}] }]
+  });
+  const assigned = mockWorkers[0];
+  const assignedMarker = new google.maps.Marker({
+    position: { lat: assigned.lat, lng: assigned.lng }, map: window.gMap,
+    title: assigned.name + ' (Assigned)',
+    icon: { path: google.maps.SymbolPath.CIRCLE, scale: 14, fillColor: '#16a34a', fillOpacity: 1, strokeColor: 'white', strokeWeight: 3 }
+  });
+  new google.maps.InfoWindow({ content: `<b>${assigned.name}</b><br>✅ ASSIGNED<br>${assigned.skill} · ⭐ ${assigned.rating}` }).open(window.gMap, assignedMarker);
+  // Other workers greyed out
+  mockWorkers.slice(1).forEach(w => {
+    new google.maps.Marker({
+      position: { lat: w.lat, lng: w.lng }, map: window.gMap,
+      icon: { path: google.maps.SymbolPath.CIRCLE, scale: 8, fillColor: '#9ca3af', fillOpacity: 1, strokeColor: 'white', strokeWeight: 1 }
+    });
+  });
+  new google.maps.Marker({ position: center, map: window.gMap, icon: { url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' } });
+}
+
+function geoCodeAndCenter(address) {
+  if (!window.gMap) return;
+  new google.maps.Geocoder().geocode({ address: address + ', Surat, Gujarat' }, (results, status) => {
+    if (status === 'OK' && results[0]) window.gMap.setCenter(results[0].geometry.location);
+  });
+}
+
+/* ===== SPIN ANIMATION ===== */
+const style = document.createElement('style');
+style.textContent = `@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`;
+document.head.appendChild(style);
+</script>
+
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  GOOGLE MAPS API KEY — REPLACE BELOW TO ACTIVATE LIVE MAP  ║
+  ║                                                              ║
+  ║  1. Go to: https://console.cloud.google.com                  ║
+  ║  2. Enable: Maps JavaScript API, Places API, Geocoding API  ║
+  ║  3. Create API Key under Credentials                         ║
+  ║  4. Replace YOUR_GOOGLE_MAPS_API_KEY below                  ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap" async defer onerror="console.log('Map API key not set — using demo mode')"></script>
+
+</body>
+</html>
